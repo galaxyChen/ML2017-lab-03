@@ -33,7 +33,7 @@ if __name__ == "__main__":
 
     print("ready to train")
     model = DecisionTreeClassifier
-    AdaBoost=ada.AdaBoostClassifier(model,1)
+    AdaBoost=ada.AdaBoostClassifier(model,10)
     AdaBoost.fit(train_set,train_y)
     pred=AdaBoost.predict(test_set)
     print("test set accuracy:")

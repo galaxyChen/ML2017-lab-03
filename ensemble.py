@@ -34,7 +34,7 @@ class AdaBoostClassifier:
         model_list = []
         for m in range(0,self.M):
             model = self.model(max_depth=6,min_samples_split=10,min_samples_leaf=10,random_state=1010)
-            print("begin to learn the %d base learner"%(m+1))
+            print("begin to learn the %d  base classifier"%(m+1))
             model.fit(X,y,sample_weight=w[m])
             h = model.predict(X)
             hm = h==y.A1
@@ -47,7 +47,7 @@ class AdaBoostClassifier:
             alpha[m] = 0.5*np.log((1-em)/em)
             zm = (w[m]*np.exp(-alpha[m]*y.A1*h)).sum()
             w[m+1] = w[m]/zm*np.exp(-alpha[m]*y.A1*h)
-            print("base learner accuracy:%f"%((h==y.A1).sum()/len(h)))
+            print(" base classifier accuracy:%f"%((h==y.A1).sum()/len(h)))
             model_list.append(model)
             
         self.alpha = alpha
