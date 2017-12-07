@@ -47,11 +47,13 @@ class AdaBoostClassifier:
             alpha[m] = 0.5*np.log((1-em)/em)
             zm = (w[m]*np.exp(-alpha[m]*y.A1*h)).sum()
             w[m+1] = w[m]/zm*np.exp(-alpha[m]*y.A1*h)
-            print("base learner accuracy:%f"%(h==y.A1).sum()/len(h))
+            print("base learner accuracy:%f"%((h==y.A1).sum()/len(h)))
             model_list.append(model)
             
         self.alpha = alpha
         self.model_list = model_list
+
+        return X,y
             
 
 
